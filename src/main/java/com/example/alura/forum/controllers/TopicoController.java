@@ -11,6 +11,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("topicos")
 public class TopicoController {
@@ -24,7 +26,8 @@ public class TopicoController {
     @PostMapping
     public ResponseEntity<TopicoResponseDto> criarTopico(@Valid @RequestBody TopicoRequestDto dto) {
         var topico = topicoService.criarTopico(dto);
-        return ResponseEntity.ok(topico);
+        var uri = URI.create("/topicos/" + topico.id());
+        return ResponseEntity.created(uri).body(topico);
     }
 
     @GetMapping(value = "{id}")
