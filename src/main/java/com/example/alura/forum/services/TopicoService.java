@@ -38,4 +38,15 @@ public class TopicoService {
         topico.setAtivo(false);
         topicoRepository.save(topico);
     }
+
+    public TopicoResponseDto atualizarTopicoPorId(Long id, TopicoRequestDto dto) {
+        var topico = topicoRepository.findById(id)
+                .orElseThrow(() -> new TopicoException("Tópico não encontrado com id: " + id));
+
+        topicoMapper.updateTopicoFromDto(dto, topico);
+
+        topicoRepository.save(topico);
+
+        return topicoMapper.toDto(topico);
+    }
 }
