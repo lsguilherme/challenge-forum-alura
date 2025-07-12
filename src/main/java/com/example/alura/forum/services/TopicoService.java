@@ -1,7 +1,7 @@
 package com.example.alura.forum.services;
 
 import com.example.alura.forum.dtos.requests.TopicoRequestDto;
-import com.example.alura.forum.dtos.requests.responses.TopicoResponseDto;
+import com.example.alura.forum.dtos.responses.TopicoResponseDto;
 import com.example.alura.forum.exceptions.TopicoNotFoundException;
 import com.example.alura.forum.mappers.TopicoMapper;
 import com.example.alura.forum.repositories.TopicoRepository;

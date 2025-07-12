@@ -1,4 +1,4 @@
-package com.example.alura.forum.dtos.requests.responses;
+package com.example.alura.forum.dtos.responses;
 
 import com.example.alura.forum.entities.Estado;
 

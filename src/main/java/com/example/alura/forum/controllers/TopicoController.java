@@ -1,7 +1,7 @@
 package com.example.alura.forum.controllers;
 
 import com.example.alura.forum.dtos.requests.TopicoRequestDto;
-import com.example.alura.forum.dtos.requests.responses.TopicoResponseDto;
+import com.example.alura.forum.dtos.responses.TopicoResponseDto;
 import com.example.alura.forum.services.TopicoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;

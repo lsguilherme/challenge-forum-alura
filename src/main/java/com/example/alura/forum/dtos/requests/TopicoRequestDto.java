@@ -1,5 +1,6 @@
 package com.example.alura.forum.dtos.requests;
 
+import com.example.alura.forum.entities.Estado;
 import jakarta.validation.constraints.NotBlank;
 
 public record TopicoRequestDto(
@@ -10,6 +11,8 @@ public record TopicoRequestDto(
         @NotBlank
         String autor,
         @NotBlank
-        String curso
+        String curso,
+
+        Estado estado
 ) {
 }
