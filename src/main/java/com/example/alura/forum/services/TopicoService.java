@@ -2,7 +2,7 @@ package com.example.alura.forum.services;
 
 import com.example.alura.forum.dtos.requests.TopicoRequestDto;
 import com.example.alura.forum.dtos.requests.responses.TopicoResponseDto;
-import com.example.alura.forum.exceptions.TopicoException;
+import com.example.alura.forum.exceptions.TopicoNotFoundException;
 import com.example.alura.forum.mappers.TopicoMapper;
 import com.example.alura.forum.repositories.TopicoRepository;
 import jakarta.transaction.Transactional;
@@ -31,14 +31,14 @@ public class TopicoService {
     }
 
     public TopicoResponseDto buscarTopicoPorId(Long id) {
-        var topico = topicoRepository.findById(id).orElseThrow(() -> new TopicoException("Topico não encontrado com id: " + id));
+        var topico = topicoRepository.findById(id).orElseThrow(() -> new TopicoNotFoundException("Topico não encontrado com id: " + id));
         return topicoMapper.toDto(topico);
     }
 
     @Transactional
     public void deletarTopicoPorId(Long id) {
         var topico = topicoRepository.findByIdAndAtivoIsTrue(id)
-                .orElseThrow(() -> new TopicoException("Tópico não encontrado com id: " + id));
+                .orElseThrow(() -> new TopicoNotFoundException("Tópico não encontrado com id: " + id));
 
         topico.setAtivo(false);
         topicoRepository.save(topico);
@@ -47,7 +47,7 @@ public class TopicoService {
     @Transactional
     public TopicoResponseDto atualizarTopicoPorId(Long id, TopicoRequestDto dto) {
         var topico = topicoRepository.findById(id)
-                .orElseThrow(() -> new TopicoException("Tópico não encontrado com id: " + id));
+                .orElseThrow(() -> new TopicoNotFoundException("Tópico não encontrado com id: " + id));
 
         topicoMapper.updateTopicoFromDto(dto, topico);
 
