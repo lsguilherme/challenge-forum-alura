@@ -6,6 +6,7 @@ import com.example.alura.forum.exceptions.TopicoNotFoundException;
 import com.example.alura.forum.mappers.TopicoMapper;
 import com.example.alura.forum.repositories.TopicoRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class TopicoService {
 
     @Transactional
     public TopicoResponseDto criarTopico(TopicoRequestDto dto) {
+        if (topicoRepository.findByTitulo(dto.titulo()).isPresent()) {
+            throw new DataIntegrityViolationException("O título '" + dto.titulo() + "' já existe.");
+        }
         var topico = topicoMapper.toEntity(dto);
         topicoRepository.save(topico);
 

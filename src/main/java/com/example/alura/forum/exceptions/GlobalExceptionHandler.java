@@ -1,5 +1,6 @@
 package com.example.alura.forum.exceptions;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -41,5 +41,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Issue> handleException(Exception e){
         var issue = new Issue(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, new Date());
         return new ResponseEntity<>(issue, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Issue> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        var issue = new Issue(e.getMessage(), HttpStatus.CONFLICT, new Date());
+        return new ResponseEntity<>(issue, HttpStatus.CONFLICT);
     }
 }

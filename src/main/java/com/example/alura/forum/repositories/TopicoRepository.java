@@ -13,4 +13,6 @@ public interface TopicoRepository extends JpaRepository<Topico, Long> {
     Optional<Topico> findByIdAndAtivoIsTrue(Long id);
 
     Page<Topico> findAllByAtivoTrue(Pageable pageable);
+
+    Optional<Topico> findByTitulo(String titulo);
 }
