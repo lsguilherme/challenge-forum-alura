@@ -30,4 +30,12 @@ public class TopicoService {
         var topico = topicoRepository.findById(id).orElseThrow(() -> new TopicoException("Topico não encontrado com id: " + id));
         return topicoMapper.toDto(topico);
     }
+
+    public void deletarTopicoPorId(Long id) {
+        var topico = topicoRepository.findByIdAndAtivoIsTrue(id)
+                .orElseThrow(() -> new TopicoException("Tópico não encontrado com id: " + id));
+
+        topico.setAtivo(false);
+        topicoRepository.save(topico);
+    }
 }

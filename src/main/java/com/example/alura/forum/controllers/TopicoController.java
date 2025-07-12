@@ -29,4 +29,11 @@ public class TopicoController {
     public ResponseEntity<TopicoResponseDto> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok().body(topicoService.buscarTopicoPorId(id));
     }
+
+    @DeleteMapping(value = "{id}")
+    @Transactional
+    public ResponseEntity<Void> deletarPorId(@PathVariable Long id){
+        topicoService.deletarTopicoPorId(id);
+        return ResponseEntity.noContent().build();
+    }
 }
