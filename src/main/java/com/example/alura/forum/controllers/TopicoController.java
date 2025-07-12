@@ -6,10 +6,7 @@ import com.example.alura.forum.services.TopicoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("topicos")
@@ -23,8 +20,13 @@ public class TopicoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<TopicoResponseDto> criarTopico(@Valid @RequestBody TopicoRequestDto dto){
+    public ResponseEntity<TopicoResponseDto> criarTopico(@Valid @RequestBody TopicoRequestDto dto) {
         var topico = topicoService.criarTopico(dto);
         return ResponseEntity.ok(topico);
+    }
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity<TopicoResponseDto> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok().body(topicoService.buscarTopicoPorId(id));
     }
 }
