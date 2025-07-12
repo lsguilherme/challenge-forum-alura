@@ -5,6 +5,9 @@ import com.example.alura.forum.dtos.requests.responses.TopicoResponseDto;
 import com.example.alura.forum.exceptions.TopicoException;
 import com.example.alura.forum.mappers.TopicoMapper;
 import com.example.alura.forum.repositories.TopicoRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +22,7 @@ public class TopicoService {
         this.topicoMapper = topicoMapper;
     }
 
+    @Transactional
     public TopicoResponseDto criarTopico(TopicoRequestDto dto) {
         var topico = topicoMapper.toEntity(dto);
         topicoRepository.save(topico);
@@ -31,6 +35,7 @@ public class TopicoService {
         return topicoMapper.toDto(topico);
     }
 
+    @Transactional
     public void deletarTopicoPorId(Long id) {
         var topico = topicoRepository.findByIdAndAtivoIsTrue(id)
                 .orElseThrow(() -> new TopicoException("Tópico não encontrado com id: " + id));
@@ -39,6 +44,7 @@ public class TopicoService {
         topicoRepository.save(topico);
     }
 
+    @Transactional
     public TopicoResponseDto atualizarTopicoPorId(Long id, TopicoRequestDto dto) {
         var topico = topicoRepository.findById(id)
                 .orElseThrow(() -> new TopicoException("Tópico não encontrado com id: " + id));
@@ -48,5 +54,11 @@ public class TopicoService {
         topicoRepository.save(topico);
 
         return topicoMapper.toDto(topico);
+    }
+
+    public Page<TopicoResponseDto> buscarTodosTopicos(Pageable pageable) {
+        var topicos = topicoRepository.findAllByAtivoTrue(pageable);
+
+        return topicos.map(topicoMapper::toDto);
     }
 }
