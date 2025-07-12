@@ -13,6 +13,7 @@ public interface TopicoMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "criadoEm", ignore = true)
     @Mapping(target = "estado", ignore = true)
+    @Mapping(target = "ativo", ignore = true)
     Topico toEntity(TopicoRequestDto topicoRequestDto);
 
     TopicoResponseDto toDto(Topico topico);

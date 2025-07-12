@@ -25,21 +25,25 @@ public class Topico {
 
     private String curso;
 
+    private Boolean ativo;
+
     public Topico() {
     }
 
-    public Topico(String titulo, String mensagem, Estado estado, String autor, String curso) {
+    public Topico(String titulo, String mensagem, Estado estado, String autor, String curso, Boolean ativo) {
         this.titulo = titulo;
         this.mensagem = mensagem;
         this.estado = estado;
         this.autor = autor;
         this.curso = curso;
+        this.ativo = ativo;
     }
 
     @PrePersist
     public void preencherDadosDeCriacao() {
         this.criadoEm = LocalDateTime.now();
         this.estado = Estado.ABERTO;
+        this.ativo = true;
     }
 
     public Long getId() {
@@ -96,5 +100,13 @@ public class Topico {
 
     public void setCurso(String curso) {
         this.curso = curso;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }
