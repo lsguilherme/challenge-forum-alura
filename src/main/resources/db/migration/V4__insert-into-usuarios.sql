@@ -1,0 +1,1 @@
+insert into usuarios (login, password) values ('teste', '$2a$12$YC3gE2VU4U7qxsZM1cfKsex0E1lDqYNgUKL4ySNW9g.0wlSMc46gS');
