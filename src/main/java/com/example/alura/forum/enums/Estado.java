@@ -1,4 +1,4 @@
-package com.example.alura.forum.entities;
+package com.example.alura.forum.enums;
 
 public enum Estado {
     ABERTO,

@@ -1,5 +1,6 @@
 package com.example.alura.forum.entities;
 
+import com.example.alura.forum.enums.Estado;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

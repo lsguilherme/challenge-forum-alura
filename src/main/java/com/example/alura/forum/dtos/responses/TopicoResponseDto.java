@@ -1,6 +1,6 @@
 package com.example.alura.forum.dtos.responses;
 
-import com.example.alura.forum.entities.Estado;
+import com.example.alura.forum.enums.Estado;
 
 import java.time.LocalDateTime;
 

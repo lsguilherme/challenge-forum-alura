@@ -1,6 +1,6 @@
 package com.example.alura.forum.dtos.requests;
 
-import com.example.alura.forum.entities.Estado;
+import com.example.alura.forum.enums.Estado;
 import jakarta.validation.constraints.NotBlank;
 
 public record TopicoRequestDto(

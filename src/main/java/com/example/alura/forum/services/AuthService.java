@@ -2,7 +2,6 @@ package com.example.alura.forum.services;
 
 import com.example.alura.forum.dtos.requests.AuthRequestDto;
 import com.example.alura.forum.dtos.responses.AuthResponseDto;
-import com.example.alura.forum.entities.Usuario;
 import com.example.alura.forum.repositories.UsuarioRepository;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

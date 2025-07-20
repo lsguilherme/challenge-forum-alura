@@ -1,6 +1,5 @@
 package com.example.alura.forum.services;
 
-import com.example.alura.forum.dtos.requests.AuthRequestDto;
 import com.example.alura.forum.dtos.responses.AuthResponseDto;
 import com.example.alura.forum.entities.Usuario;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
